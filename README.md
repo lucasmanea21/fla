@@ -41,3 +41,12 @@ A Python script that turns regular expressions into DFA’s and checks if words 
    ```
 
 ---
+
+## Implementation Decisions
+
+- **Infix→Postfix**: we use Shunting-Yard and insert an explicit concatenation operator (`·`).
+- **Postfix→NFA**: Thompson’s construction with ε-transitions for `|`, `*`, `+`, and `?`.
+- **Extensions**: `+` (one-or-more) and `?` (zero-or-one) are implemented as small ε-based fragments.
+- **NFA→DFA**: standard subset-construction, using ε-closure plus real-symbol moves.
+- **DFA Structure**: states stored as `frozenset` for uniqueness; transitions in dicts for O(1) lookups.
+- **Simulation**: walk the DFA one symbol at a time, rejecting immediately if a transition is missing.
