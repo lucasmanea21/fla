@@ -1,7 +1,7 @@
 import json
 
 def regex_to_postfix(regex):
-    precedence     = {'|':1, '·':2, '*':3, '+':3, '?':3}
+    precedence = {'|':1, '·':2, '*':3, '+':3, '?':3}
     right_associative = {'*', '+', '?'}
     
     def is_symbol(c):
@@ -221,7 +221,7 @@ if __name__=='__main__':
         postfix = regex_to_postfix(regex)
         nfa = postfix_to_nfa(postfix)
         
-        print_nfa(nfa)
+        # print_nfa(nfa)
         
         dfa = convert_nfa_to_dfa(nfa)
         
